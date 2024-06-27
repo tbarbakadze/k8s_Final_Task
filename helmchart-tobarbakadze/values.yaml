@@ -1,0 +1,55 @@
+namespace:
+  name: tobarbakadze
+  labels:
+    app: tobarbakadze-server
+
+student:
+  name: tobarbakadze
+
+serviceAccount:
+  name: tobarbakadze
+
+role:
+  name: tobarbakadze-role
+
+roleBinding:
+  name: tobarbakadze-rolebinding
+
+configMap:
+  name: tobarbakadze-config
+  index: |
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>tobarbakadze Server</title>
+    </head>
+    <body>
+        <h1>Hello, Tornike Barbakadze!</h1>
+    </body>
+    </html>
+
+image:
+  repository: nginx
+  tag: latest
+
+service:
+  name: tobarbakadze-service
+  port: 80
+
+labels:
+  app: tobarbakadze-server
+  environment: production
+
+deployment:
+  name: tobarbakadze-deployment
+  replicas: 1
+  image: nginx
+  tag: latest
+  containerPort: 80
+
+virtualService:
+  name: tobarbakadze-virtualservice
+  gateway: istio-system/academy-ingress-gateway
+  host: tobarbakadze.com
+
+
